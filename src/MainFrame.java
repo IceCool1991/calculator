@@ -56,7 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
             erase = false;
         }
     }
-    
+
     private void calculateResult() {
         operand = Double.parseDouble(inputField.getText());
         switch (operator) {
@@ -336,7 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         operator = OperatorType.ADD;
     }//GEN-LAST:event_plusBtnActionPerformed
-    
+
     private void oneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneBtnActionPerformed
         eraseIfNeededAndWrite("1");
     }//GEN-LAST:event_oneBtnActionPerformed
@@ -393,23 +393,31 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void minusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusBtnActionPerformed
-
-        
+        erase = true;
+        calculateResult();
+        displayResult();
+        operator = OperatorType.SUBTRACT;
     }//GEN-LAST:event_minusBtnActionPerformed
 
     private void equalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalBtnActionPerformed
-        calculateResult();
         erase = true;
+        calculateResult();
+        displayResult();
+        operator = OperatorType.NONE;
     }//GEN-LAST:event_equalBtnActionPerformed
 
     private void multiplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiplyBtnActionPerformed
-
-        
+        erase = true;
+        calculateResult();
+        displayResult();
+        operator = OperatorType.MULTIPLY;
     }//GEN-LAST:event_multiplyBtnActionPerformed
 
     private void divideBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divideBtnActionPerformed
-
-        
+        erase = true;
+        calculateResult();
+        displayResult();
+        operator = OperatorType.DIVIDE;
     }//GEN-LAST:event_divideBtnActionPerformed
 
     private void commaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commaBtnActionPerformed
