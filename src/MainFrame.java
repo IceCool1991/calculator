@@ -1,9 +1,12 @@
+
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author alu26600537w
@@ -24,6 +27,55 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        initMyFields();
+    }
+
+    public void initMyFields() {
+        accumulator = 0;
+        operand = 0;
+        erase = false;
+        operator = OperatorType.NONE;
+        decimalSeparator = getDecimalSeparator();
+    }
+
+    public char getDecimalSeparator() {
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.getDefault());
+        return dfs.getDecimalSeparator();
+    }
+
+    private void displayResult() {
+        inputField.setText("" + accumulator);
+    }
+
+    private void eraseIfNeededAndWrite(String number) {
+        if (!erase) {
+            String field = inputField.getText();
+            inputField.setText(field + number);
+        } else {
+            inputField.setText(number);
+            erase = false;
+        }
+    }
+    
+    private void calculateResult() {
+        operand = Double.parseDouble(inputField.getText());
+        switch (operator) {
+            case ADD:
+                accumulator += operand;
+                break;
+            case MULTIPLY:
+                accumulator *= operand;
+                break;
+            case SUBTRACT:
+                accumulator -= operand;
+                break;
+            case DIVIDE:
+                accumulator /= operand;
+                break;
+            case NONE:
+                accumulator = operand;
+                break;
+        }
     }
 
     /**
@@ -276,127 +328,56 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void plusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusBtnActionPerformed
-        operator = OperatorType.ADD;
-        operand = Double.parseDouble(inputField.getText());
-        accumulator = calculateResult();
-        inputField.setText("" + accumulator);
         erase = true;
+
+        calculateResult();
+        displayResult();
+        inputField.setText("" + accumulator);
+
+        operator = OperatorType.ADD;
     }//GEN-LAST:event_plusBtnActionPerformed
-    private double calculateResult() {
-        switch (operator) {
-            case ADD:
-                return accumulator = accumulator + operand;
-            case MULTIPLY:
-                return accumulator = accumulator * operand;
-            case SUBTRACT:
-                return accumulator = accumulator - operand;
-            case DIVIDE:
-                return accumulator = accumulator / operand;
-        }
-        return accumulator;
-    }
+    
     private void oneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "1");
-        } else {
-            inputField.setText("1");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("1");
     }//GEN-LAST:event_oneBtnActionPerformed
 
     private void twoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "2");
-        } else {
-            inputField.setText("2");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("2");
     }//GEN-LAST:event_twoBtnActionPerformed
 
     private void threeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "3");
-        } else {
-            inputField.setText("3");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("3");
     }//GEN-LAST:event_threeBtnActionPerformed
 
     private void fourBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fourBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "4");
-        } else {
-            inputField.setText("4");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("4");
     }//GEN-LAST:event_fourBtnActionPerformed
 
     private void fiveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "5");
-        } else {
-            inputField.setText("5");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("5");
     }//GEN-LAST:event_fiveBtnActionPerformed
 
     private void sixBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sixBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "6");
-        } else {
-            inputField.setText("6");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("6");
     }//GEN-LAST:event_sixBtnActionPerformed
 
     private void sevenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sevenBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "7");
-        } else {
-            inputField.setText("7");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("7");
     }//GEN-LAST:event_sevenBtnActionPerformed
 
     private void eightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eightBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "8");
-        } else {
-            inputField.setText("8");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("8");
     }//GEN-LAST:event_eightBtnActionPerformed
 
     private void nineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nineBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "9");
-        } else {
-            inputField.setText("9");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("9");
     }//GEN-LAST:event_nineBtnActionPerformed
 
     private void zeroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zeroBtnActionPerformed
-        if (!erase) {
-            String field = inputField.getText();
-            inputField.setText(field + "0");
-        } else {
-            inputField.setText("0");
-            erase = false;
-        }
+        eraseIfNeededAndWrite("0");
     }//GEN-LAST:event_zeroBtnActionPerformed
 
     private void eraseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eraseBtnActionPerformed
-
         String field = inputField.getText();
         if (field.length() != 0) {
             field = field.substring(0, field.length() - 1);
@@ -412,11 +393,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBtnActionPerformed
 
     private void minusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusBtnActionPerformed
-        operator = OperatorType.SUBTRACT;
-        operand = Double.parseDouble(inputField.getText());
-        accumulator = calculateResult();
-        inputField.setText("" + accumulator);
-        erase = true;
+
+        
     }//GEN-LAST:event_minusBtnActionPerformed
 
     private void equalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalBtnActionPerformed
@@ -425,23 +403,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_equalBtnActionPerformed
 
     private void multiplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiplyBtnActionPerformed
-        operator = OperatorType.MULTIPLY;
-        operand = Double.parseDouble(inputField.getText());
-        accumulator = calculateResult();
-        inputField.setText("" + accumulator);
-        erase = true;
+
+        
     }//GEN-LAST:event_multiplyBtnActionPerformed
 
     private void divideBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divideBtnActionPerformed
-        operator = OperatorType.DIVIDE;
-        operand = Double.parseDouble(inputField.getText());
-        accumulator = calculateResult();
-        inputField.setText("" + accumulator);
-        erase = true;
+
+        
     }//GEN-LAST:event_divideBtnActionPerformed
 
     private void commaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commaBtnActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_commaBtnActionPerformed
 
     /**
